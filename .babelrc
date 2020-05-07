@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "presets": [
     ["env", {
@@ -11,3 +12,18 @@
   ],
   "plugins": ["transform-vue-jsx", "transform-runtime"]
 }
+=======
+{
+  "presets": [
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+      },
+			"plugins": ["dynamic-import-node"]
+    }],
+    "stage-2"
+  ],
+  "plugins": ["transform-vue-jsx", "transform-runtime"]
+}
+>>>>>>> 4c0d6bcf0e22fb516f0fee4f8d27a3508f239063
