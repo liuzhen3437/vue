@@ -201,7 +201,7 @@ export const constantRouterMap = [
 	  path: 'equipment',
 	  name: 'equipment',
 	  component: () => import('@/views/setting/equipment/index'),
-	  meta: {title: '设备号设置', icon: 'product-list',showRole:true},
+	  meta: {title: '设备管理', icon: 'product-list',showRole:true},
     children:[
       {
         path: 'equipment/update',
