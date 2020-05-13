@@ -22,6 +22,9 @@
         <el-table-column label="编号" width="100" align="center">
           <template slot-scope="scope">{{scope.row.id}}</template>
         </el-table-column>
+        <el-table-column label="公司名称" align="center">
+          <template slot-scope="scope">{{scope.row.companyName}}</template>
+        </el-table-column>
         <el-table-column label="名称" align="center">
           <template slot-scope="scope">{{scope.row.name}}</template>
         </el-table-column>

@@ -174,6 +174,7 @@
 	import {formatDate} from '@/utils/date';
 	import {listTaskPoint,listTaskPointTotal} from '@/api/reportData/inspectionRecords'
   import { showLoading, hideLoading } from '@/api/loading';
+  import { limitTime } from '@/api/limitTime';
 
 
   function endDateTimestamp(){
@@ -183,11 +184,13 @@
     console.log(getTime)
   	return getTime
   }
+  const startDate = new Date(new Date(new Date().toLocaleDateString()).getTime());
+  const endDate = new Date(new Date(new Date().toLocaleDateString()).getTime()+24*60*60*1000-1);
   const defaultListQuery = {
     pageNum: 1,
     pageSize: 10,
-    startDateTime: null,
-    endDateTime: null,
+    startDateTime: startDate.getTime(),
+    endDateTime: endDate.getTime(),
     inspectorName: null,
     deviceName: null,
     addressName: null,
@@ -371,7 +374,7 @@
 		  return {
 			disabledDate(time){
 			  if (self.listQuery.endDateTime) {  //如果结束时间不为空，则小于结束时间
-				return new Date(self.listQuery.endDateTime).getTime() < time.getTime()
+				return new Date(self.listQuery.endDateTime).getTime() < time.getTime() || time.getTime() < limitTime()
 			  } else {
           return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
 			  }

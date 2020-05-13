@@ -57,7 +57,7 @@
 						}"
 						placeholder="选择开始时间">
 					</el-time-picker> -->
-					
+
 					<el-time-picker
 						v-model="line.startTime"
 						:picker-options="{
@@ -138,7 +138,7 @@
 				</el-switch> -->
 				<div class="inw200">
 					<el-input v-model="line.lineRepeatTimes"    oninput="value=value.replace(/^\.+|[^\d.]/g,'')"></el-input>
-					
+
 				  <!-- <el-input v-model="line.lineRepeatTimes"  :disabled="planinfo.lineRepeatTimesButton===1"  oninput="value=value.replace(/^\.+|[^\d.]/g,'')"></el-input> -->
 				</div>
 				次
@@ -188,7 +188,7 @@
 				</div>
 				天
 			</el-form-item>
-			<el-form-item label="后执行：" prop="planCycleCustomRest" v-show="line.planCycleType===2">
+			<el-form-item label="后休息：" prop="planCycleCustomRest" v-show="line.planCycleType===2">
 				<div class="inw200">
 					<el-input v-model="line.planCycleCustomRest" oninput="value=value.replace(/^\.+|[^\d.]/g,'')"></el-input>
 				</div>
@@ -204,11 +204,14 @@
 <script>
   import {fetchList} from '@/api/line'
 	import {planCreate,planupdate,getPlan,updatePlan} from '@/api/setting/PlanSetUp'
+
+  const start = new Date(new Date(new Date().toLocaleDateString()).getTime());
+  console.log(start.getTime()); //Mon Dec 04 2017 00:00:00 GMT+0800 (中国标准时间)
   const defaultLine={
     name: '',
 		isEqualInspector:0,
 		isEqualDevice:0,
-		startDate:'',
+		startDate:start.getTime(),
 		startTime:'',
 		// endDateButton:0,
 		endDate:'',

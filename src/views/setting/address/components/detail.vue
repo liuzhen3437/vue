@@ -7,21 +7,22 @@
       <el-form-item label="名称：" prop="description">
         <el-input v-model="address.description"></el-input>
       </el-form-item>
-			
+
 			<el-form-item label="卡号：" prop="card">
 			  <el-input v-model="address.card"></el-input>
 			</el-form-item> -->
-			<el-form-item label="卡号：">
-			  <el-input v-model="address.card"></el-input>
-			</el-form-item> 
-			<el-form-item label="地点：" prop="name">
-			  <el-input v-model="address.name"></el-input>
+      <el-form-item label="名称：" prop="name">
+        <el-input v-model="address.name"></el-input>
+      </el-form-item>
+			<el-form-item label="卡号：" v-if="isEdit" >
+			  <el-input v-model="address.card" :disabled="true"></el-input>
 			</el-form-item>
+
 			<el-form-item label="描述：" >
 			  <el-input v-model="address.description"></el-input>
 			</el-form-item>
 			<el-form-item label="公司：" prop="companyId" >
-			  <el-select 
+			  <el-select
 				 :disabled="isEdit"
 			    v-model="address.companyId"
 			    placeholder="请选择公司">
@@ -146,5 +147,3 @@
 </script>
 <style>
 </style>
-
-

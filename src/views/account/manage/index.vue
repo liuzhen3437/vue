@@ -25,9 +25,9 @@
         <el-table-column label="公司名称" align="center">
           <template slot-scope="scope">{{scope.row.companyName}}</template>
         </el-table-column>
-        <el-table-column label="工作组名称" align="center">
+        <!-- <el-table-column label="工作组名称" align="center">
           <template slot-scope="scope">{{scope.row.groupName}}</template>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column label=" 头像" align="center">
           <template slot-scope="scope">
 					<img width="100%" :src="scope.row.icon" alt=""></template>

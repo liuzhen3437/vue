@@ -110,7 +110,7 @@
 		import {fetchList} from '@/api/setting/PlanSetUp'
 		import {deviceEventList} from '@/api/setting/equipment'
 		import {taskTrackList} from '@/api/reportData/historicalRoute'
-
+    import { limitTime } from '@/api/limitTime';
     // import AMap from "vue-amap";
     // Vue.use(AMap);
     // AMap.initAMapApiLoader({
@@ -138,7 +138,7 @@
 				return{
 					startDatePicker: {
 						disabledDate(date) {
-								return date.getTime() >= Date.now();
+								return date.getTime() >= Date.now() || date.getTime() < limitTime();
 						}
 					},
 					listQuery:Object.assign({}, defaultList),

@@ -129,7 +129,8 @@
  import FileSaver from 'file-saver'
   import XLSX from 'xlsx'
 	import {monthTotalCompany} from '@/api/reportData/monthlyCalendar'
-
+  import { limitTime } from '@/api/limitTime';
+  
 	var nowDate = new Date();
 	var cloneNowDate = new Date();
 	var fullYear = nowDate.getFullYear();
@@ -152,24 +153,22 @@
 		return y + '-' + m + '-' + d;
 	};
 
-		function startDateTimestamp(){
-			var starDate = getFullDate(cloneNowDate.setDate(1));//当月第一天
-			let d = new Date(starDate+' '+'00:00');
-			let t = d.getTime(d);
-			return t
-		}
+		// function startDateTimestamp(){
+		// 	var starDate = getFullDate(cloneNowDate.setDate(1));//当月第一天
+		// 	let d = new Date(starDate+' '+'00:00');
+		// 	let t = d.getTime(d);
+		// 	return t
+		// }
 
-		function endDateTimestamp(){
-			// var endDate = getFullDate(cloneNowDate.setDate(endOfMonth));//当月最后一天
-			// let d = new Date(endDate+' '+'00:00');
-			// let t = d.getTime(d);
-       //明天的时间
-      var day = new Date(new Date().toLocaleDateString()).getTime();
+		// function endDateTimestamp(){
 
-      var getTime=day+24*60*60*1000;
-      console.log(getTime)
-			return getTime
-		}
+  //      //明天的时间
+  //     var day = new Date(new Date().toLocaleDateString()).getTime();
+
+  //     var getTime=day+24*60*60*1000;
+  //     console.log(getTime)
+		// 	return getTime
+		// }
 
     function getMonDayAndSunDay(datevalue) {
         let dateValue = datevalue;
@@ -224,6 +223,46 @@
       return arr
     }
 
+
+	function startDateTimestamp(){
+
+			var data = new Date(); //本月
+			data.setDate(1);
+			data.setHours(0);
+			data.setSeconds(0);
+			data.setMinutes(0);
+
+			var data1 = new Date(); // 下月
+			if (data.getMonth() == 11){
+				data1.setMonth(0)
+			}else{
+				data1.setMonth(data.getMonth() + 1)
+			}
+			data1.setDate(1);
+			data1.setHours(0);
+			data1.setSeconds(0);
+			data1.setMinutes(0);
+			return data.getTime()
+		}
+
+		function endDateTimestamp(){
+			var data = new Date(); //本月
+			data.setDate(1);
+			data.setHours(0);
+			data.setSeconds(0);
+			data.setMinutes(0);
+			var data1 = new Date(); // 下月
+			if (data.getMonth() == 11){
+				data1.setMonth(0)
+			}else{
+				data1.setMonth(data.getMonth() + 1)
+			}
+			data1.setDate(1);
+			data1.setHours(0);
+			data1.setSeconds(0);
+			data1.setMinutes(0);
+			return data1.getTime()-1000
+		}
 
 
 		const defaultListQuery = {
@@ -309,9 +348,9 @@
 				return {
 				disabledDate(time){
 					if (self.listQuery.endDate) {  //如果结束时间不为空，则小于结束时间
-					return new Date(self.listQuery.endDate).getTime() < time.getTime()||time.getTime() < new Date(self.listQuery.endDate).getTime() - (30 * 24 * 60 * 60 * 1000)*1
+					return new Date(self.listQuery.endDate).getTime() < time.getTime() || time.getTime() > Date.now() || time.getTime() < limitTime()
 					} else {
-					// return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+					return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
 					}
 				}
 				}
@@ -320,11 +359,14 @@
 				const  self = this
 				return {
 				disabledDate(time) {
-					if (self.listQuery.startDate) {  //如果开始时间不为空，则结束时间大于开始时间
+			    let curDate = (new Date()).getTime();
+			    let three = 90 * 24 * 3600 * 1000;
+			    let threeMonths = curDate - three;
 
-            return new Date(self.listQuery.startDate).getTime() > time.getTime()||time.getTime() > new Date(self.listQuery.startDate).getTime() + (30 * 24 * 60 * 60 * 1000)*1||time.getTime() > endDateTimestamp();
+					if (self.listQuery.startDate) {  //如果开始时间不为空，则结束时间大于开始时间
+					return new Date(self.listQuery.startDate).getTime() > time.getTime() || time.getTime() > endDateTimestamp() ;
 					} else {
-					// return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
+					 return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
 					}
 				}
 				}

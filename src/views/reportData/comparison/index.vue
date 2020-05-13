@@ -75,7 +75,8 @@
 <script>
 	var  echarts=require('echarts');
 	import {chartTotalAddress,chartTotalDevice,chartTotalInspector,chartTotalLine} from '@/api/reportData/comparison'
-
+  import { showLoading, hideLoading } from '@/api/loading';
+  import { limitTime } from '@/api/limitTime';
   const defaultListQuery = {
     startDate: startDateTimestamp(),
     endDate: endDateTimestamp()
@@ -186,8 +187,9 @@
 				const self = this
 				return {
 				disabledDate(time){
+
 					if (self.listQuery.endDate) {  //如果结束时间不为空，则小于结束时间
-					return new Date(self.listQuery.endDate).getTime() < time.getTime() || time.getTime() > Date.now()
+					return new Date(self.listQuery.endDate).getTime() < time.getTime() || time.getTime() > Date.now() || time.getTime() < limitTime()
 					} else {
 					return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
 					}
@@ -198,8 +200,10 @@
 				const  self = this
 				return {
 				disabledDate(time) {
+
+
 					if (self.listQuery.startDate) {  //如果开始时间不为空，则结束时间大于开始时间
-					return new Date(self.listQuery.startDate).getTime() > time.getTime() || time.getTime() > Date.now()
+					return new Date(self.listQuery.startDate).getTime() > time.getTime() || time.getTime() > endDateTimestamp() ;
 					} else {
 					 return time.getTime() > Date.now()//开始时间不选时，结束时间最大值小于等于当天
 					}
@@ -211,6 +215,7 @@
       },
       handleSearchList() {
 				console.log(this.queryCondition);
+        showLoading()
 				switch(this.queryCondition){
 				case 0:
 						this.getList();
@@ -410,6 +415,7 @@
 					}
 					// 使用刚指定的配置项和数据显示图表。
 					myChart.setOption(option);
+          hideLoading();
 			},
 
     }
