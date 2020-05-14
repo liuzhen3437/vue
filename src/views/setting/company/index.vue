@@ -16,7 +16,9 @@
 
     </el-card>
     <div class="table-container">
+			
       <el-card class="operate-container" shadow="never">
+				
         <el-tree
           :data="treeData"
           node-key="id"
@@ -24,6 +26,7 @@
           :expand-on-click-node="false">
           <span  class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }}</span>
+						<span>{{ data.region }}</span>
             <span>
               <el-button
                 type="text"
@@ -75,8 +78,8 @@ import {fetchList,deleteCompany} from '@/api/company'
       //定义一个newIdMap
       //delete v.parent;//删除{v}的parent和id
       //delete v.id;
-      v.label = v.name + ' <' + v.province + ',' + v.city + '>'
-
+      v.label = v.name 
+			v.region=v.province + ',' + v.city
       if(parent) {
         !parent[children] && (parent[children] = []);
         parent[children].push(v);
@@ -84,6 +87,7 @@ import {fetchList,deleteCompany} from '@/api/company'
         jsonTree.push(v);
       }
     });
+		console.log(jsonTree)
     return jsonTree;
   };
 
@@ -130,6 +134,7 @@ import {fetchList,deleteCompany} from '@/api/company'
               pid: 'parentId',
               children: 'children'
 				    })
+						console.log(this.treeData)
         });
       },
       handleUpdate( row) {
@@ -168,5 +173,8 @@ import {fetchList,deleteCompany} from '@/api/company'
     justify-content: space-between;
     font-size: 14px;
     padding-right: 8px;
+		
   }
+	.el-tree-node__content{border-bottom:1px solid #ccc; padding:10px 0px; height:auto }
+
 </style>

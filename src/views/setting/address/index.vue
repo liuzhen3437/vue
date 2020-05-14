@@ -55,19 +55,20 @@
 						</el-table-column>
             <el-table-column label="操作" width="300" align="center">
               <template slot-scope="scope">
+								<el-button
+								  size="mini"
+								  @click="handleDelete(scope.$index, scope.row)">设置为临时卡
+								</el-button>
                 <el-button
                   size="mini"
                   @click="handleUpdate(scope.$index, scope.row)">编辑
                 </el-button>
 								<el-button
 								  size="mini"
+									type="danger"
 								  @click="handleSingleDelete(scope.$index, scope.row)">删除
 								</el-button>
-                <el-button
-                  size="mini"
-                  type="danger"
-                  @click="handleDelete(scope.$index, scope.row)">设置为临时卡
-                </el-button>
+                
               </template>
             </el-table-column>
           </el-table>

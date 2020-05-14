@@ -68,8 +68,12 @@
       <i class="el-icon-tickets"></i>
       <span>数据列表</span>
     </el-card>
-
-	<div id="homeChart" style="height: 600px;padding: 15px;padding-top:30px;display: flex;justify-content: center;"></div>
+	
+	<div id="homeChart" style="height: 600px;padding: 15px;padding-top:30px;display: flex;justify-content: center;     position: relative;">
+		<div class="homeChartbg" v-if="listLoading">
+			<div class="el-loading-spinner"><svg viewBox="25 25 50 50" class="circular"><circle cx="50" cy="50" r="20" fill="none" class="path"></circle></svg></div>
+		</div>
+	</div>
   </div>
 </template>
 <script>
@@ -158,6 +162,7 @@
       }
     },
     created() {
+	this.listLoading=true
       this.getList();
 
     },
@@ -215,7 +220,8 @@
       },
       handleSearchList() {
 				console.log(this.queryCondition);
-        showLoading()
+        
+	this.listLoading=true
 				switch(this.queryCondition){
 				case 0:
 						this.getList();
@@ -415,7 +421,7 @@
 					}
 					// 使用刚指定的配置项和数据显示图表。
 					myChart.setOption(option);
-          hideLoading();
+				this.listLoading=false
 			},
 
     }
@@ -465,4 +471,11 @@
   .input-width {
     width: 203px;
   }
+  .homeChartbg{
+	  background-color: rgba(255, 255, 255, 0.7);
+    z-index: 2000;
+   position: absolute;
+   width:100%;
+   height:600px
+    }
 </style>

@@ -46,6 +46,7 @@
                 </el-button>
 								<el-button
 								  size="mini"
+									type="danger"
 								  @click="DeleteSingle(scope.$index, scope.row)">删除
 								</el-button>
               </template>

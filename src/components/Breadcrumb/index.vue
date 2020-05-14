@@ -2,8 +2,8 @@
   <el-breadcrumb class="app-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item,index)  in levelList" :key="item.path" v-if="item.meta.title">
-        <span v-if="item.redirect==='noredirect'||index==levelList.length-1||item.meta.go=='false'" class="no-redirect">{{item.meta.title}}</span>
-        <span v-else :to="item.redirect||item.path" :index="index" @click="go(index)">{{item.meta.title}}</span>
+        <span v-if="item.redirect==='noredirect'||index==levelList.length-1||item.meta.go=='false'" class="no-redirect" style="cursor:auto !important">{{item.meta.title}}</span>
+        <span style="cursor:pointer !important" v-else :to="item.redirect||item.path" :index="index" @click="go(index)">{{item.meta.title}}</span>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
@@ -63,4 +63,5 @@ export default {
       cursor: text;
     }
   }
+
 </style>
