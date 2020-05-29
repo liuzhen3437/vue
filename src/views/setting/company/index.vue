@@ -11,14 +11,9 @@
         size="mini">
         添加
       </el-button>
-
-
-
     </el-card>
     <div class="table-container">
-			
       <el-card class="operate-container" shadow="never">
-				
         <el-tree
           :data="treeData"
           node-key="id"
@@ -49,11 +44,8 @@
   <router-view ></router-view>
   </div>
 </template>
-
 <script>
-
 import {fetchList,deleteCompany} from '@/api/company'
-
     var jsonTree = function (data,config) {
     //1.声明了变量，拿到传参过来的值，注意这里拿到的是string类型，不是对应的值
     var id = config.id || 'id',
@@ -90,7 +82,6 @@ import {fetchList,deleteCompany} from '@/api/company'
 		console.log(jsonTree)
     return jsonTree;
   };
-
   export default {
     name: 'companyList',
     data() {
@@ -108,8 +99,6 @@ import {fetchList,deleteCompany} from '@/api/company'
     },
     created() {
       this.getList();
-
-
     },
 		watch: {
 		    $route(to,from) {
@@ -128,7 +117,6 @@ import {fetchList,deleteCompany} from '@/api/company'
           this.total = response.data.total;
           this.totalPage = response.data.totalPage;
           this.pageSize = response.data.pageSize;
-
           	this.treeData = jsonTree(this.list, {
               id: 'id',
               pid: 'parentId',
@@ -156,7 +144,6 @@ import {fetchList,deleteCompany} from '@/api/company'
             this.getList();
           });
         });
-
       },
       handleAdd() {
         this.$router.push({path: '/setting/company/company/add'})

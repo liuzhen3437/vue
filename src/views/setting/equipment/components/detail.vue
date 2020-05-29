@@ -22,7 +22,7 @@
 			</el-form-item>
 			<el-form-item label="公司：" prop="companyId" >
 			  <el-select
-				  :disabled="isEdit"
+				  
 			    v-model="address.companyId"
 			    placeholder="请选择公司">
 			    <el-option

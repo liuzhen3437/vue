@@ -13,9 +13,12 @@
                 v-loading="listLoading"
                 border>
 
-        <el-table-column label="编号" width="100" align="center">
+        <!-- <el-table-column label="序号" width="100" align="center">
           <template slot-scope="scope">{{scope.row.id}}</template>
-        </el-table-column>
+        </el-table-column> -->
+		<el-table-column label="序号" width="100" align="center" type="index">
+		
+		</el-table-column>
         <el-table-column label="名称" align="center">
           <template slot-scope="scope">{{scope.row.name}}</template>
         </el-table-column>

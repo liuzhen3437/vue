@@ -24,9 +24,9 @@
           </el-option>
         </el-select>
       </el-form-item>
-			<el-form-item label="头像：" >
+			<!-- <el-form-item label="头像：" >
 			  <single-upload v-model="line.icon"></single-upload>
-			</el-form-item>
+			</el-form-item> -->
       <el-form-item label="账户类型：" prop="type">
         <el-radio-group v-model="line.type">
              <el-radio :label="0">管理员</el-radio>

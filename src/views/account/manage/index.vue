@@ -19,8 +19,8 @@
                 v-loading="listLoading"
                 border>
         <el-table-column type="selection" width="60" align="center"></el-table-column>
-        <el-table-column label="编号" width="100" align="center">
-          <template slot-scope="scope">{{scope.row.id}}</template>
+        <el-table-column label="序号" width="100" align="center" type="index">
+
         </el-table-column>
         <el-table-column label="公司名称" align="center">
           <template slot-scope="scope">{{scope.row.companyName}}</template>
@@ -28,13 +28,16 @@
         <!-- <el-table-column label="工作组名称" align="center">
           <template slot-scope="scope">{{scope.row.groupName}}</template>
         </el-table-column> -->
-        <el-table-column label=" 头像" align="center">
+        <!-- <el-table-column label=" 头像" align="center">
           <template slot-scope="scope">
 					<img width="100%" :src="scope.row.icon" alt=""></template>
-        </el-table-column>
-        <el-table-column label="昵称" align="center">
-          <template slot-scope="scope">{{scope.row.nickName}}</template>
-        </el-table-column>
+        </el-table-column> -->
+       <el-table-column label="名称" align="center">
+         <template slot-scope="scope">{{scope.row.nickName}}</template>
+       </el-table-column>
+       <el-table-column label="用户名" align="center">
+         <template slot-scope="scope">{{scope.row.usernameInput}}</template>
+       </el-table-column>
         <el-table-column label="账户类型" align="center">
           <template slot-scope="scope">
             <span v-if="scope.row.type==0">管理员</span>

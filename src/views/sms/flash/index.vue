@@ -38,9 +38,12 @@
                 style="width: 100%;"
                 v-loading="listLoading" border>
         <el-table-column type="selection" width="60" align="center"></el-table-column>
-        <el-table-column label="编号" width="100" align="center">
+        <!-- <el-table-column label="序号" width="100" align="center">
           <template slot-scope="scope">{{scope.row.id}}</template>
-        </el-table-column>
+        </el-table-column> -->
+		<el-table-column label="序号" width="100" align="center" type="index">
+		
+		</el-table-column>
         <el-table-column label="活动标题" align="center">
           <template slot-scope="scope">{{scope.row.title}}</template>
         </el-table-column>

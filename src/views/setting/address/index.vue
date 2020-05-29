@@ -26,9 +26,12 @@
 
                 border>
             <el-table-column type="selection"  width="60" align="center"></el-table-column>
-            <el-table-column label="编号" width="100" align="center">
+            <!-- <el-table-column label="序号" width="100" align="center">
               <template slot-scope="scope">{{scope.row.id}}</template>
-            </el-table-column>
+            </el-table-column> -->
+			<el-table-column label="序号" width="100" align="center" type="index">
+			
+			</el-table-column>
             <el-table-column label="卡号" align="center">
               <template slot-scope="scope">{{scope.row.card}}</template>
             </el-table-column>
@@ -114,9 +117,12 @@
                 v-loading="listLoadingTempCard"
                 border>
             <el-table-column type="selection" width="60" align="center"></el-table-column>
-            <el-table-column label="编号" width="100" align="center">
+            <!-- <el-table-column label="序号" width="100" align="center">
               <template slot-scope="scope">{{scope.row.id}}</template>
-            </el-table-column>
+            </el-table-column> -->
+			<el-table-column label="序号" width="100" align="center" type="index">
+			
+			</el-table-column>
             <el-table-column label="卡号" align="center">
               <template slot-scope="scope">{{scope.row.card}}</template>
             </el-table-column>
@@ -200,8 +206,11 @@
             row-key="id"
 			      border>
 			  <el-table-column type="selection" :reserve-selection="true"  width="60" align="center"></el-table-column>
-			  <el-table-column label="编号" width="100" align="center">
+			  <!-- <el-table-column label="序号" width="100" align="center">
 			    <template slot-scope="scope">{{scope.row.id}}</template>
+			  </el-table-column> -->
+			  <el-table-column label="序号" width="100" align="center" type="index">
+			  
 			  </el-table-column>
 			  <el-table-column label="卡号" align="center">
 			    <template slot-scope="scope">{{scope.row.card}}</template>
