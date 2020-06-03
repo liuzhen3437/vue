@@ -59,7 +59,7 @@ export default {
 				var list=response.data.list
 				var arr=[];
 				var numberArr=[];
-				for(var i=0;i<list.length;i++){
+				for(var i=0;i<5;i++){
 					 var valueArr=[];
 					 arr[i] = new Object(); 
 					 valueArr.push(list[i].riskRateForChartValue);

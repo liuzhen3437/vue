@@ -2,7 +2,7 @@
 	<div>
   <el-row :gutter="40" class="panel-group">
   	<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-			<div class="card-panel">
+			<div class="card-panel" @click="jump()">
 				<div class="card-panel-icon-wrapper icon-taskPointCount">
 				  <svg-icon icon-class="taskPointCount" class-name="card-panel-icon" />
 				</div>
@@ -15,7 +15,7 @@
 			</div>
   	</el-col>
   	<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-			<div class="card-panel">
+			<div class="card-panel" @click="jump()">
 				<div class="card-panel-icon-wrapper icon-taskPointFaildCount">
 				  <svg-icon icon-class="taskPointFaildCount" class-name="card-panel-icon" />
 				</div>
@@ -28,7 +28,7 @@
 			</div>
   	</el-col>
   	<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-			<div class="card-panel">
+			<div class="card-panel" @click="jump()">
 				<div class="card-panel-icon-wrapper icon-eventCount">
 				  <svg-icon icon-class="eventCount" class-name="card-panel-icon" />
 				</div>
@@ -41,7 +41,7 @@
 			</div>
   	</el-col>
   	<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-			<div class="card-panel">
+			<div class="card-panel" @click="jump()">
 				<div class="card-panel-icon-wrapper icon-recordCount">
 				  <svg-icon icon-class="recordCount" class-name="card-panel-icon" />
 				</div>
@@ -73,20 +73,20 @@ export default {
   data() {
     return {
 			listQuery: Object.assign({}, defaultListQuery),
-			
+
 			eventCount:0,//事件数 ,
 			recordCount:0,
 			taskPointCount:0,
 			taskPointFaildCount :0,
-			
+
     }
   },
   watch: {
-    
+
   },
   mounted() {
     this.$nextTick(() => {
-      
+
 			this.monthTotalDashboardCount()
     })
   },
@@ -100,17 +100,20 @@ export default {
 				this.taskPointFaildCount =response.data.taskPointFaildCount ;
 			});
 		},
+    jump(){
+      this.$router.push({path: '/data/inspectionRecords'})
+    }
   }
 }
 
 function startDateTimestamp(){
-	
+
 			var data = new Date(); //本月
 			data.setDate(1);
 			data.setHours(0);
 			data.setSeconds(0);
 			data.setMinutes(0);
-			
+
 			var data1 = new Date(); // 下月
 			if (data.getMonth() == 11){
 				data1.setMonth(0)
@@ -123,7 +126,7 @@ function startDateTimestamp(){
 			data1.setMinutes(0);
 			return data.getTime()
 		}
-		
+
 		function endDateTimestamp(){
 			var data = new Date(); //本月
 			data.setDate(1);
@@ -168,18 +171,18 @@ function startDateTimestamp(){
       }
 
       .icon-taskPointCount {
-				
+
         background: #40c9c6;
       }
 
       .icon-taskPointFaildCount {
-				
+
         background: #f4516c;
       }
 
       .icon-eventCount {
         background: #FF7F00 ;
-				
+
       }
 
       .icon-recordCount {

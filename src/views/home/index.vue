@@ -9,7 +9,7 @@
     </el-card> -->
 		<el-row :gutter="40" class="panel-group">
 			<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-				<div class="card-panel">
+				<div class="card-panel" @click="jump(1)">
 					<div class="card-panel-icon-wrapper icon-addressCount">
 					  <svg-icon icon-class="addressCount" class-name="card-panel-icon" />
 					</div>
@@ -22,7 +22,7 @@
 				</div>
 			</el-col>
 			<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-				<div class="card-panel">
+				<div class="card-panel" @click="jump(2)">
 					<div class="card-panel-icon-wrapper icon-people">
 					  <svg-icon icon-class="peoples" class-name="card-panel-icon" />
 					</div>
@@ -35,7 +35,7 @@
 				</div>
 			</el-col>
 			<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-				<div class="card-panel">
+				<div class="card-panel" @click="jump(3)">
 					<div class="card-panel-icon-wrapper icon-money">
 					  <svg-icon icon-class="deviceCount" class-name="card-panel-icon" />
 					</div>
@@ -48,7 +48,7 @@
 				</div>
 			</el-col>
 			<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-				<div class="card-panel">
+				<div class="card-panel" @click="jump(4)">
 					<div class="card-panel-icon-wrapper icon-shopping">
 					  <svg-icon icon-class="planCount" class-name="card-panel-icon" />
 					</div>
@@ -62,9 +62,9 @@
 			</el-col>
 		</el-row>
 		<div>
-			<list-summarizing />	
+			<list-summarizing />
 		</div>
-		
+
 		<!-- <div id="homeChart" style="height: 600px;padding: 15px;padding-top:30px;display: flex;justify-content: center;"></div> -->
 		<el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
 		  <line-chart :chart-data="lineChartData" />
@@ -74,7 +74,7 @@
 			<el-col :span="12"><transaction-table /></el-col>
 		</el-row>
 
-		
+
   </div>
 </template>
 
@@ -85,7 +85,7 @@
 	import ListSummarizing from './components/ListSummarizing'
 	import TransactionTable from './components/TransactionTable'
 	import { mapGetters } from 'vuex'
-	
+
 	var  echarts=require('echarts');
   // import img_home from '@/assets/images/home.png';
 	import {chartTotalAddress} from '@/api/reportData/comparison'
@@ -132,14 +132,14 @@
 				lineChartData: lineChartData.newVisitis,
 				addressCount:0,// 地点数 ,
 				deviceCount:0,// 设备数 ,
-				
+
 				inspectorCount:0,// 人员数 ,
 				planCount:0,// 计划数 ,
       }
     },
 		mounted() {
 		  this.$nextTick(() => {
-		    
+
 				this.monthTotalDashboardCount()
 		  })
 		},
@@ -156,10 +156,21 @@
 					this.planCount =response.data.planCount ;
 				});
 			},
+      jump(a){
+        if(a==1){
+          this.$router.push({path: '/setting/address'})
+        }else if(a==2){
+          this.$router.push({path: '/setting/staff'})
+        }else if(a==3){
+          this.$router.push({path: '/setting/equipment'})
+        }else if(a==4){
+          this.$router.push({path: '/setting/PlanSetUp'})
+        }
+      }
     }
   }
-	
-	
+
+
 </script>
 <style lang="scss" scoped>
 .panel-group {
@@ -206,7 +217,7 @@
 		.icon-addressCount{
 			color:#FF7F00;
 		}
-		
+
     .icon-people {
       color: #40c9c6;
     }
